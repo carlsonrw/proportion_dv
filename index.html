@@ -71,15 +71,16 @@
     var sample_function = function(param){
         var size = 50 + Math.floor(param*250);
         var html =  
-           '<p style="font-family:arial;"><b>How much did you want to earn money for <br>self versus charity?</b></p>'+'<p style="font-family:arial;"><b>Press "G" and/or "H" to respond below</b></p>'+
-           '<p style="font-family:arial;">more <b><font color="FFA500">orange</font></b> = more self motivated</p>'+ 
-           '<p style="font-family:arial;">more <b><font color="6495ED">blue</font></b> = more char motivated</p>'+           '<font color="DCDCDC">.</font>'+
+           '<p style="font-family:arial;"><b>How much did you want to earn money for <br>self versus charity?</b></p>'+
+            '<p style="font-family:arial;"><font size="3">Press "G" and "H" to respond below</p>'+
+           '<p style="font-family:arial;"><font size="3">more <b><font color="FFA500">orange</font></b> = more self</p>'+ 
+           '<p style="font-family:arial;"><font size="3">more <b><font color="6495ED">blue</font></b> = more charity</p>'+           '<font color="DCDCDC">.</font>'+
             '<div style="display: block; margin: auto;">'+
         '<div style="display: block; position: absolute; align: center; margin: auto; background-color:  #6495ED; '+
         'width: '+350+'px; height: '+35+'px;"></div></div>'+
             '<div style="display: block; margin: auto; height: 50px;">'+
         '<div style="display: block; position: absolute; align: center; margin: auto; background-color:  #FFA500; '+
-        'width: '+size+'px; height: '+35+'px;"></div></div>'
+        'width: '+size+'px; height: '+35+'px;"></div></div><br>'
         return html;
     }
 
