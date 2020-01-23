@@ -33,7 +33,7 @@ jsPsych.plugins['reconstruction'] = (function() {
       step_size: {
         type: jsPsych.plugins.parameterType.FLOAT,
         pretty_name: 'Step size',
-        default: 0.1,
+        default: .1/5,
         description: 'The change in the stimulus parameter caused by pressing one of the modification keys.'
       },
       key_increase: {
@@ -90,6 +90,7 @@ jsPsych.plugins['reconstruction'] = (function() {
       persist: true,
       allow_held_key: true
     });
+      
     // draw first iteration
     draw(param);
 
@@ -97,7 +98,9 @@ jsPsych.plugins['reconstruction'] = (function() {
 
       //console.log(param);
 
-      display_element.innerHTML = '<div id="jspsych-reconstruction-stim-container">'+trial.stim_function(param)+'</div>';'<div id="jspsych-reconstruction-stim-container">'+trial.stim_function(param)+'</div>';
+      display_element.innerHTML = '<div id="jspsych-reconstruction-stim-container">'+trial.stim_function(param)+'</div>';
+        
+          display_element.innerHTML = '<div id="jspsych-reconstruction-stim-container2">'+trial.stim_function(param)+'</div>';
 
       // add submit button
       display_element.innerHTML += '<button id="jspsych-reconstruction-next" class="jspsych-btn jspsych-reconstruction">'+trial.button_label+'</button>';
