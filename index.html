@@ -101,10 +101,7 @@
     }
     timeline.push(trial);
 
-    
-    jsPsych.data.addProperties({
-        Ryan: 'Stephanie',
-    })
+
       
 //        var turkID = jsPsych.data.getURLVariable('subject')
 //
@@ -122,8 +119,18 @@
 //                window.location.replace("https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_8iwvxnwI89zaQWV?workerId="+turkID);
             },
             on_close: function() {
+                var data = jsPsych.data.get().values();
+                console.log('data', data);
+                
+                jsPsych.data.addProperties({
+                    Ryan: 'Stephanie',
+                });
+                
+                var data_after = jsPsych.data.get().values();
+                console.log('data_after', data_after);
+                
                 firebase.database().ref(firebase.auth().currentUser.uid).set({
-                    data: jsPsych.data.get().values(),
+                    data,
                 });
             },
         });
