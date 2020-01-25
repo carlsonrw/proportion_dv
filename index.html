@@ -69,12 +69,12 @@
   <script>
       
       
-    var turkID = jsPsych.data.getURLVariable('PROLIFIC_PID')
-    var question = jsPsych.data.getURLVariable('frame')
+    var PROLIFIC_PID = jsPsych.data.getURLVariable('PROLIFIC_PID')
+    var mtv = jsPsych.data.getURLVariable('mtv')
 
     jsPsych.data.addProperties({
-        SubjectID: turkID,
-        Probe: question,
+        PROLIFIC_PID: PROLIFIC_PID,
+        mtv: mtv,
     }); 
       
     
@@ -117,7 +117,7 @@
         jsPsych.init({
             timeline: timeline,
             on_finish: function(){
-//                window.location.replace("https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_8iwvxnwI89zaQWV?workerId="+turkID);
+                window.location.replace("https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_29ILa2gohIvP9M9?PROLIFIC_PID="+PROLIFIC_PID"&mtv="+mtv);
             },
             on_close: function() {
                 firebase.database().ref(firebase.auth().currentUser.uid).set({
