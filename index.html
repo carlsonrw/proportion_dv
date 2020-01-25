@@ -70,10 +70,8 @@
       
       
     var id = jsPsych.data.getURLVariable('PROLIFIC_PID')
-    console.log(PROLIFIC_PID)
-    var q = jsPsych.data.getURLVariable('mtv')
-    console.log(mtv)
-    console.log(mtv+1)
+    var q = jsPsych.data.getURLVariable('mtv') + 1
+
 
     jsPsych.data.addProperties({
         PROLIFIC_PID: id,
@@ -120,7 +118,7 @@
         jsPsych.init({
             timeline: timeline,
             on_finish: function(){
-                window.location.replace("https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_8iwvxnwI89zaQWV?PROLIFIC_ID="+id+"&mtv="+q);
+                window.location.replace("https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_29ILa2gohIvP9M9?PROLIFIC_ID="+id+"&mtv="+q);
             },
             on_close: function() {
                 firebase.database().ref(firebase.auth().currentUser.uid).set({
