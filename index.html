@@ -67,7 +67,17 @@
 
   <body></body>
   <script>
+      
+      
+    var turkID = jsPsych.data.getURLVariable('PROLIFIC_PID')
+    var question = jsPsych.data.getURLVariable('frame')
 
+    jsPsych.data.addProperties({
+        SubjectID: turkID,
+        Probe: question,
+    }); 
+      
+    
     /* create timeline */
     var timeline = [];
 
@@ -101,15 +111,6 @@
     }
     timeline.push(trial);
 
-
-      
-//        var turkID = jsPsych.data.getURLVariable('subject')
-//
-//        jsPsych.data.addProperties({
-//            Color_Order: balance,
-//            Condition_Order: MI_Order,
-//            SubjectID: turkID,
-//        });
      
 
         // call the saveData function after the experiment is over
@@ -119,18 +120,8 @@
 //                window.location.replace("https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_8iwvxnwI89zaQWV?workerId="+turkID);
             },
             on_close: function() {
-                var data = jsPsych.data.get().values();
-                console.log('data', data);
-                
-                jsPsych.data.addProperties({
-                    Ryan: 'Stephanie',
-                });
-                
-                var data_after = jsPsych.data.get().values();
-                console.log('data_after', data_after);
-                
                 firebase.database().ref(firebase.auth().currentUser.uid).set({
-                    data,
+                    data: jsPsych.data.get().values()
                 });
             },
         });
