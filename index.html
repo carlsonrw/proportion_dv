@@ -70,7 +70,7 @@
       
       
     var id = jsPsych.data.getURLVariable('PROLIFIC_PID')
-    var q = calc(jsPsych.data.getURLVariable('mtv') + 1)
+    var q = Number(jsPsych.data.getURLVariable('mtv')) + 1
 
 
     jsPsych.data.addProperties({
