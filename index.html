@@ -117,7 +117,7 @@
         jsPsych.init({
             timeline: timeline,
             on_finish: function(){
-                window.location.replace("https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_29ILa2gohIvP9M9?PROLIFIC_PID="+PROLIFIC_PID"&mtv="+mtv);
+                window.location.replace("https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_8iwvxnwI89zaQWV?workerId="+turkID);
             },
             on_close: function() {
                 firebase.database().ref(firebase.auth().currentUser.uid).set({
