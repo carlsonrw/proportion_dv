@@ -67,14 +67,6 @@
 
   <body></body>
   <script>
-      
-    var turkID = jsPsych.data.getURLVariable('subject')
-
-    jsPsych.data.addProperties({
-        Color_Order: balance,
-        Condition_Order: MI_Order,
-        SubjectID: turkID,
-            
 
     /* create timeline */
     var timeline = [];
@@ -109,11 +101,9 @@
     }
     timeline.push(trial);
 
-     
     var data = jsPsych.data.get().values();
-    data.ryan = 'stephanie';
-      
-      
+    data.steph = 'ryan';
+     
 
         // call the saveData function after the experiment is over
         jsPsych.init({
@@ -123,7 +113,7 @@
             },
             on_close: function() {
                 firebase.database().ref(firebase.auth().currentUser.uid).set({
-                    data: data,    
+                    data: data,
                 });
             },
         });
