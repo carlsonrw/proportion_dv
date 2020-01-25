@@ -1,6 +1,33 @@
 <!DOCTYPE html>
 <html>
   <head>
+        <title>My experiment</title>
+        
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-analytics.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyCROTQKiFcj7bT2XLPtIcq3Rpf-Y0w2tHc",
+        authDomain: "self-inf.firebaseapp.com",
+        databaseURL: "https://self-inf.firebaseio.com",
+        projectId: "self-inf",
+        storageBucket: "self-inf.appspot.com",
+        messagingSenderId: "580545762317",
+        appId: "1:580545762317:web:d14e1e743922242f2fb144",
+        measurementId: "G-5QDB03P0HJ"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
+
+      
     <title>My experiment</title>
     <script src="jspsych-6.1.0/jspsych.js"></script>
     <script src="jspsych-6.1.0/plugins/jspsych-html-keyboard-response.js"></script>
@@ -9,6 +36,9 @@
     <script src="jspsych-6.1.0/plugins/jspsych-image-slider-response.js"></script>
     <link href="jspsych-6.1.0/css/jspsych.css" rel="stylesheet" type="text/css"></link>
   </head>
+
+
+
   <body></body>
   <script>
 
@@ -18,78 +48,23 @@
     /* define welcome message trial */
     var welcome = {
       type: "html-keyboard-response",
-      stimulus: "Welcome to the experiment. Press any key to begin."
+      stimulus: "<center><b>Instructions:</b></center> <br>Press the G & H keys to respond on the next screen<br><br> Press the Continue button to confirm your response<br><br>Once you understand these instructions, press the space bar."
     };
-
-
-    /* define instructions trial */
-    var instructions = {
-      type: "html-keyboard-response",
-      stimulus: "<p>In this experiment, a circle will appear in the center " +
-          "of the screen.</p><p>If the circle is <strong>blue</strong>, " +
-          "press the letter F on the keyboard as fast as you can.</p>" +
-          "<p>If the circle is <strong>orange</strong>, press the letter J " +
-          "as fast as you can.</p>" +
-          "<div style='width: 700px;'>"+
-          "<div style='float: left;'><img src='img/blue.png'></img>" +
-          "<p class='small'><strong>Press the F key</strong></p></div>" +
-          "<div class='float: right;'><img src='img/orange.png'></img>" +
-          "<p class='small'><strong>Press the J key</strong></p></div>" +
-          "</div>"+
-          "<p>Press any key to begin.</p>",
-      post_trial_gap: 2000
-    };
-      
-
-
-
-    /* test trials */
-
-    var test_stimuli = [
-      { stimulus: "img/blue.png", data: { test_part: 'test', correct_response: 'f' } },
-      { stimulus: "img/orange.png", data: { test_part: 'test', correct_response: 'j' } }
-    ];
-
-    var fixation = {
-      type: 'html-keyboard-response',
-      stimulus: '<div style="font-size:60px;">+</div>',
-      choices: jsPsych.NO_KEYS,
-      trial_duration: function(){
-        return jsPsych.randomization.sampleWithoutReplacement([250, 500, 750, 1000, 1250, 1500, 1750, 2000], 1)[0];
-      },
-      data: {test_part: 'fixation'}
-    }
-
-    var test = {
-      type: "image-keyboard-response",
-      stimulus: jsPsych.timelineVariable('stimulus'),
-      choices: ['f', 'j'],
-      data: jsPsych.timelineVariable('data'),
-      on_finish: function(data){
-        data.correct = data.key_press == jsPsych.pluginAPI.convertKeyCharacterToKeyCode(data.correct_response);
-      },
-    }
-    
-
+//    timeline.push(welcome);
     
     var myNumber = Math.floor(Math.random()*10);
     myNumber = myNumber *.1; /*/ for 7 pt scale /*/
 
     
-    
     var sample_function = function(param){
         var size = 50 + Math.floor(param*250); /* min 50/350, max 300/350 */
         var html =  
-           '<p style="font-family:arial;"><b>How much do you want to earn money for <br>yourself versus money for charity?</b></p>'+
-            '<p style="font-family:arial;"><font size="3">Press "G" and "H" to indicate below:</p>'+
-           '<p style="font-family:arial;"><font size="3">more <b><font color="FFA500">orange</font></b> = more motivated by money for <b><font color="FFA500">self</font></b></p>'+ 
-           '<p style="font-family:arial;"><font size="3">more <b><font color="6495ED">blue</font></b> = more motivated by money for <b><font color="6495ED">charity</font></b></p>'+           '<font color="DCDCDC">.</font>'+
-            '<div style="display: block; margin: auto;">'+
+           '<p style="font-family:arial;font-size:98.5%;"><span style="color: white;">_____</span><span style="color: lightgrey;">|</span><span style="color: white;">____________</span><span style="color: lightgrey;">|</span><span style="color: white;">____________</span><span style="color: lightgrey;">|</span><span style="color: white;">_____</span></p>'+
         '<div style="display: block; position: absolute; align: center; margin: auto; background-color:  #6495ED; '+
         'width: '+350+'px; height: '+30+'px;"></div></div>'+
             '<div style="display: block; margin: auto; height: 50px;">'+
         '<div style="display: block; position: absolute; align: center; margin: auto; background-color:  #FFA500; '+
-        'width: '+size+'px; height: '+30+'px;"></div></div><br>'
+        'width: '+size+'px; height: '+30+'px;"></div></div>'
         return html;
     }
 
@@ -100,35 +75,19 @@
     }
     timeline.push(trial);
 
-    
-      
      
 
-    /* define debrief */
-
-    var debrief_block = {
-      type: "html-keyboard-response",
-      stimulus: function() {
-
-        var trials = jsPsych.data.get().filter({test_part: 'test'});
-        var correct_trials = trials.filter({correct: true});
-        var accuracy = Math.round(correct_trials.count() / trials.count() * 100);
-        var rt = Math.round(correct_trials.select('rt').mean());
-
-        return "<p>You responded correctly on "+accuracy+"% of the trials.</p>"+
-        "<p>Your average response time was "+rt+"ms.</p>"+
-        "<p>Press any key to complete the experiment. Thank you!</p>";
-
-      }
-    };
-
-
-    /* start the experiment */
-    jsPsych.init({
-      timeline: timeline,
-      on_finish: function() {
-        jsPsych.data.displayData();
-      }
-    });
-  </script>
+        // call the saveData function after the experiment is over
+        jsPsych.init({
+            timeline: timeline,
+            on_finish: function(){
+//                window.location.replace("https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_8iwvxnwI89zaQWV?workerId="+turkID);
+            },
+            on_close: function() {
+                firebase.database().ref(firebase.auth().currentUser.uid).set({
+                    data: jsPsych.data.get().values()
+                });
+            },
+        });
+    </script>
 </html>
